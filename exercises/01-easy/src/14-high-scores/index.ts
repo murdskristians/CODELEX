@@ -11,15 +11,32 @@ class HighScores {
   }
 
   get latest() {
-    return 0;
+    return this.scores[this.scores.length - 1];
   }
 
   get personalBest() {
-    return 0;
+    return Math.max(...this.scores);
   }
 
   get personalTopThree() {
-    return 0;
+      // sort descending
+      let sortedArray = this.scores.sort(function(a,b) {
+          if (a < b) { return 1; }
+          else if (a == b) { return 0; }
+          else { return -1; }
+      });
+
+      switch (sortedArray.length) {
+        case 1:
+          return  [ sortedArray[0] ]
+          break;
+        case 2:
+          return [ sortedArray[0], sortedArray[1] ]
+          break;
+        default:
+          return [ sortedArray[0], sortedArray[1], sortedArray[2] ];
+          break;
+      }
   }
 }
 

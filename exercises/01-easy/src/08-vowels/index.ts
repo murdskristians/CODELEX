@@ -9,6 +9,9 @@
  * vowels('Hello there!') === 4
  */
 
-function vowels(s: string) {}
+function vowels(s: string) {
+   return Array.from(s)
+  .filter(letter => 'AEIUOaeiou'.includes(letter)).length;
+}
 
 export { vowels };

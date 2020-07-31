@@ -12,6 +12,16 @@
  * reverseInt(-90) === -9
  */
 
-function reverse(int: number) {}
+function reverse(int: number) {
+    return (
+        parseFloat(
+            int
+            .toString()
+            .split('')
+            .reverse()
+            .join('')
+        ) * Math.sign(int)
+      )               
+}
 
 export { reverse };

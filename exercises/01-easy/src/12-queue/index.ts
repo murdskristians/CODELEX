@@ -13,9 +13,25 @@
  */
 
 class Queue {
-  add(n: number) {}
+  private items:any ;
 
-  remove() {}
+  constructor() { 
+    this.items = []; 
+  } 
+
+  add(n: number) {     
+    this.items.push(n); 
+  } 
+  
+
+  remove() {
+      // removing element from the queue returns underflow when called on empty queue 
+      if( !this.items ) return "Underflow"; 
+      else {
+        return this.items.shift(); 
+      }
+  
+  }
 }
 
 export { Queue };
