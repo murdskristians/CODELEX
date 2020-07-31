@@ -10,6 +10,9 @@
  * isEven(3) === false
  */
 
-function isEven(n: number) {}
+function isEven(n: number) {
+    const roundNum = Math.round(n)
+    return roundNum%2 === 0 ? true : false
+}
 
 export { isEven };
