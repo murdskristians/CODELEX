@@ -3,6 +3,13 @@ import { Configuration } from "./Configuration";
 
 export class Grid {
   private configuration: Configuration;
+  apples: Cell[] = [
+    new Cell(33, 22),
+    new Cell(35, 22),
+    new Cell(37, 22),
+    new Cell(39, 22),
+    new Cell(41, 22)
+  ];
 
   constructor(configuration: Configuration) {
     this.configuration = configuration;
@@ -11,7 +18,7 @@ export class Grid {
   seed(): void {}
 
   isAppleInside(cell: Cell): boolean {
-    return false;
+    return this.apples.find( el => el.x === cell.x && el.y === cell.y ) !== undefined;
   }
 
   removeApple(cell: Cell): void {}
@@ -21,11 +28,6 @@ export class Grid {
   }
 
   getApples(): Cell[] {
-    return [
-      new Cell(33, 22),
-      new Cell(35, 22),
-      new Cell(37, 22),
-      new Cell(39, 22)
-    ];
+    return this.apples
   }
 }

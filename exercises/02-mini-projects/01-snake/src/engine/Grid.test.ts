@@ -1,4 +1,5 @@
 import { Grid } from "./Grid";
+import { Cell } from "./Cell";
 import { Configuration } from "./Configuration";
 
 describe("Grid", () => {
@@ -20,5 +21,13 @@ describe("Grid", () => {
     const apples = grid.getApples();
 
     expect(apples.length).toBe(5);
+  });
+  it("should correctly detect apples in cells", () => {
+    const grid = new Grid(configuration);
+
+    const apples = grid.getApples();
+
+    expect(grid.isAppleInside( apples[0] )).toBeTruthy();
+    expect(grid.isAppleInside( new Cell (999, 999) )).toBeFalsy();
   });
 });
