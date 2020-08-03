@@ -28,10 +28,21 @@
  */
 
 class PhoneNumber {
-  constructor(input: string) {}
+  private phone:any;
+
+  constructor(input: string) {
+    this.phone = "";
+  }
 
   number() {
-    return "";
+    // var regex = new RegExp(
+    //   "\\+?\\(?\\d*\\)? ?\\(?\\d+\\)?\\d*([\\s./-]\\d{2,})+",
+    //   "g"
+    // );
+
+    //return regex.exec(this.phone)
+
+    
   }
 }
 
