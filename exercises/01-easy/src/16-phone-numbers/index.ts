@@ -35,15 +35,19 @@ class PhoneNumber {
   }
 
   number() {
-    // var regex = new RegExp(
-    //   "\\+?\\(?\\d*\\)? ?\\(?\\d+\\)?\\d*([\\s./-]\\d{2,})+",
-    //   "g"
-    // );
-
-    //return regex.exec(this.phone)
-
-    // const myString = this.phone.replace(/\D/g,'');
-    // console.log(myString)
+    const myString = this.phone.replace(/\D/g,'');
+    
+    if ( myString.length <= 9 ||
+      myString.length === 12 ||
+      myString.length === 11 && myString.charAt(0) !== '1' ||
+      myString.length === 10 && ( myString.charAt(0) === '0' || myString.charAt(0) === '1' ) ||
+      myString.length === 10 && ( myString.charAt(3) === '0' || myString.charAt(3) === '1' ) ||
+      myString.length === 11 && ( myString.charAt(1) === '0' || myString.charAt(1) === '1' ) ||
+      myString.length === 11 && ( myString.charAt(4) === '0' || myString.charAt(4) === '1' )) return null
+    
+      else if ( myString.length === 11 && myString.charAt(0) === '1' ) return myString.substr(1)
+    
+      else return myString
   }
 }
 

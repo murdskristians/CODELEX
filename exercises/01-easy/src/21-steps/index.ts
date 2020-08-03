@@ -19,6 +19,15 @@
  *            '####'
  */
 
-function steps(n: number) {}
+function steps(n: number, i:number = 1) {
+    //End of recursion
+    if (i > n) return;
+
+    //Printing steps
+    console.log('#'.repeat(i) + ' '.repeat(n - i));
+
+    //Recursive call
+    steps(n, i + 1);
+}
 
 export { steps };
