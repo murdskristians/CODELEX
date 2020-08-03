@@ -31,7 +31,7 @@ class PhoneNumber {
   private phone:any;
 
   constructor(input: string) {
-    this.phone = "";
+    this.phone = input;
   }
 
   number() {
@@ -42,7 +42,8 @@ class PhoneNumber {
 
     //return regex.exec(this.phone)
 
-    
+    // const myString = this.phone.replace(/\D/g,'');
+    // console.log(myString)
   }
 }
 
