@@ -11,8 +11,12 @@
  */
 
 function isEven(n: number) {
-    const roundNum = Math.round(n)
-    return roundNum%2 === 0 ? true : false
+    if( (n & 1) == 0 ){
+        return true
+    }
+    
+    return false;
 }
+
 
 export { isEven };
