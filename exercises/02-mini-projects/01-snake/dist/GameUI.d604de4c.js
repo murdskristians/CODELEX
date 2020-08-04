@@ -170,17 +170,39 @@ function () {
     this.configuration = configuration;
   }
 
-  Grid.prototype.seed = function () {};
-
-  Grid.prototype.isAppleInside = function (cell) {
-    return this.apples.find(function (el) {
-      return el.x === cell.x && el.y === cell.y;
-    }) !== undefined;
+  Grid.prototype.getRndInteger = function (min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   };
 
-  Grid.prototype.removeApple = function (cell) {};
+  Grid.prototype.seed = function () {
+    this.apples = [new _Cell.Cell(this.getRndInteger(0, 80), this.getRndInteger(0, 40)), new _Cell.Cell(this.getRndInteger(0, 80), this.getRndInteger(0, 40)), new _Cell.Cell(this.getRndInteger(0, 80), this.getRndInteger(0, 40)), new _Cell.Cell(this.getRndInteger(0, 80), this.getRndInteger(0, 40)), new _Cell.Cell(this.getRndInteger(0, 80), this.getRndInteger(0, 40))];
+  };
+
+  Grid.prototype.isAppleInside = function (cell) {
+    if (this.apples.find(function (el) {
+      return el.x === cell.x && el.y === cell.y;
+    }) !== undefined) {
+      this.removeApple(cell); //console.log(cell)
+
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  Grid.prototype.removeApple = function (cell) {
+    var remove = this.apples.filter(function (el) {
+      return el.x === cell.x && el.y === cell.y;
+    });
+    var index = this.apples.indexOf(remove[0]);
+
+    if (index > -1) {
+      this.apples.splice(index, 1);
+    }
+  };
 
   Grid.prototype.isDone = function () {
+    if (this.apples.length === 0) this.seed();
     return false;
   };
 
@@ -221,7 +243,12 @@ function () {
   };
 
   Snake.prototype.move = function () {
-    this.tail.shift();
+    if (this.growCalls > 0) {
+      this.growCalls--;
+    } else {
+      this.tail.shift();
+    }
+
     this.tail.push(this.head);
 
     if (this.direction === "Right") {
@@ -235,9 +262,6 @@ function () {
 
   Snake.prototype.grow = function () {
     this.growCalls += 3;
-    this.tail.unshift(this.head);
-    this.tail.unshift(this.head);
-    this.tail.unshift(this.head);
   };
 
   Snake.prototype.getHead = function () {
@@ -245,7 +269,9 @@ function () {
   };
 
   Snake.prototype.isSnake = function (cell) {
-    return false;
+    return this.tail.find(function (el) {
+      return el.x === cell.x && el.y === cell.y;
+    }) !== undefined;
   };
 
   Snake.prototype.getDirection = function () {
@@ -632,7 +658,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59552" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50933" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -7,6 +7,8 @@ export class Snake {
   direction: Direction = "Right";
   growCalls: number = 0;
 
+
+
   setDirection( direction: Direction ) {
     if ( this.direction === 'Right' && direction === 'Left' ) return
     if ( this.direction === 'Up' && direction === 'Down' ) return
@@ -16,7 +18,11 @@ export class Snake {
   }
 
   move() {
-    this.tail.shift();
+    if ( this.growCalls > 0 ) {
+      this.growCalls--
+    } else {
+      this.tail.shift();
+    }
     this.tail.push(this.head); 
 
     if ( this.direction === "Right" ) {
@@ -30,9 +36,6 @@ export class Snake {
 
   grow() {
     this.growCalls += 3;
-    this.tail.unshift(this.head)
-    this.tail.unshift(this.head)
-    this.tail.unshift(this.head)
   }
 
   getHead(): Cell {
@@ -40,7 +43,7 @@ export class Snake {
   }
 
   isSnake(cell: Cell): boolean {
-    return false;
+    return this.tail.find( el => el.x === cell.x && el.y === cell.y ) !== undefined;
   }
 
   getDirection(): Direction {

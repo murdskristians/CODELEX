@@ -66,8 +66,24 @@ describe("Snake", () => {
         snake.move();
         snake.move();
         snake.move();
-
+        
         expect(snake.getHead()).toEqual(new Cell(5, 0))
         expect(snake.getTail()).toEqual([new Cell(0, 0), new Cell(1, 0), new Cell(2, 0), new Cell(3, 0), new Cell(4, 0)])
+    })
+    it("should stop game if head go into tail", () => {
+        const snake = new Snake()
+        snake.grow();
+        snake.move();
+        snake.move();
+        snake.move();
+        snake.setDirection('Down');
+        snake.move();
+        snake.setDirection('Left');
+        snake.move();
+        snake.setDirection('Up');
+        snake.move();
+
+        expect( snake.isSnake( snake.getHead() ) ).toBeTruthy()
+        expect( snake.isSnake( new Cell ( 9999, 9999) ) ).toBeFalsy()
     })
 })
