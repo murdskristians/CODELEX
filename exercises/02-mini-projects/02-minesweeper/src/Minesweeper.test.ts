@@ -35,7 +35,15 @@ describe("Minesweeper", () => {
     const minesweeper = new Minesweeper(level);
     minesweeper.selectLevel(LEVELS[1])
     
-
     expect(minesweeper.currentLevel().title).toBe("Intermediate");
+  });
+  it("should should show correct count of left mines", () => {
+    const level = LEVELS[0];
+    const minesweeper = new Minesweeper(level);
+    
+    expect(minesweeper.currentLevel().mines).toBe(10);
+
+    minesweeper.minesFound = 3;
+    expect(minesweeper.minesLeftCount()).toBe(7);
   });
 });

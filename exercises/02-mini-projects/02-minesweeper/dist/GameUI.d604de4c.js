@@ -168,7 +168,15 @@ function () {
   };
 
   Minesweeper.prototype.timePassed = function () {
-    return 999;
+    var mins = 1;
+    var now = new Date().getTime();
+    var deadline = mins * 60 * 1000 + now;
+    return setInterval(function () {
+      var currentTime = new Date().getTime();
+      var distance = deadline - currentTime;
+      var seconds = Math.floor(distance % (1000 * 60) / 1000);
+      return seconds;
+    }, 500);
   };
 
   Minesweeper.prototype.minesLeftCount = function () {

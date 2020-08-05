@@ -16,6 +16,9 @@ export class Minesweeper {
     this.level = level;
   }
 
+  
+
+
   columnsCount(): number {
     return this.level.columns;
   }
@@ -36,7 +39,18 @@ export class Minesweeper {
   }
 
   timePassed(): number {
-    return 999;
+
+    let mins = 1;
+    let now = new Date().getTime();
+    let deadline = mins * 60 * 1000 + now;
+   
+    return setInterval( () => {
+      var currentTime = new Date().getTime();
+      var distance = deadline - currentTime;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      return seconds;
+    }, 500)
   }
 
   minesLeftCount() {
