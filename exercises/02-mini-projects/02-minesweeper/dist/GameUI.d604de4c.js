@@ -145,6 +145,7 @@ var Minesweeper =
 /** @class */
 function () {
   function Minesweeper(level) {
+    this.minesFound = 0;
     this.level = level;
   }
 
@@ -171,7 +172,7 @@ function () {
   };
 
   Minesweeper.prototype.minesLeftCount = function () {
-    return 999;
+    return this.level.mines - this.minesFound;
   };
 
   Minesweeper.prototype.reset = function () {};
@@ -180,7 +181,9 @@ function () {
     return this.level;
   };
 
-  Minesweeper.prototype.selectLevel = function (level) {};
+  Minesweeper.prototype.selectLevel = function (level) {
+    this.level = level;
+  };
 
   Minesweeper.prototype.isLost = function () {
     return false;

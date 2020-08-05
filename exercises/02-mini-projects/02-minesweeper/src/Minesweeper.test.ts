@@ -30,4 +30,12 @@ describe("Minesweeper", () => {
     expect(cells.length).toBe(100);
     cells.forEach(row => expect(row.length).toBe(100));
   });
+  it("should be able to change levels", () => {
+    const level = LEVELS[0];
+    const minesweeper = new Minesweeper(level);
+    minesweeper.selectLevel(LEVELS[1])
+    
+
+    expect(minesweeper.currentLevel().title).toBe("Intermediate");
+  });
 });

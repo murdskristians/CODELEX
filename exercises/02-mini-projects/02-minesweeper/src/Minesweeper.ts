@@ -10,6 +10,7 @@ export class Cell {
 
 export class Minesweeper {
   private level: Level;
+  minesFound: number = 0;
 
   constructor(level: Level) {
     this.level = level;
@@ -39,7 +40,7 @@ export class Minesweeper {
   }
 
   minesLeftCount() {
-    return 999;
+    return this.level.mines - this.minesFound;
   }
 
   reset() {}
@@ -48,7 +49,9 @@ export class Minesweeper {
     return this.level;
   }
 
-  selectLevel(level: Level) {}
+  selectLevel(level: Level) {
+    this.level = level;
+  }
 
   isLost(): boolean {
     return false;
