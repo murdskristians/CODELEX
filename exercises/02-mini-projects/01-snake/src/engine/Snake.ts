@@ -9,7 +9,7 @@ export class Snake {
 
 
 
-  setDirection( direction: Direction ) {
+  setDirection( direction: Direction ):void {
     if ( this.direction === 'Right' && direction === 'Left' ) return
     if ( this.direction === 'Up' && direction === 'Down' ) return
     if ( this.direction === 'Left' && direction === 'Right' ) return
@@ -17,7 +17,7 @@ export class Snake {
     this.direction = direction;
   }
 
-  move() {
+  move():void {
     if ( this.growCalls > 0 ) {
       this.growCalls--
     } else {
@@ -34,7 +34,7 @@ export class Snake {
     } else this.head = new Cell( this.head.x - 1, this.head.y);
   }
 
-  grow() {
+  grow():void {
     this.growCalls += 3;
   }
 
