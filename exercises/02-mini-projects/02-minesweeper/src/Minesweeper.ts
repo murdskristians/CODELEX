@@ -16,13 +16,11 @@ export class Minesweeper {
   }
 
   columnsCount(): number {
-    return 10;
+    return this.level.columns;
   }
 
   getCells(): Cell[][] {
-    if ( this.level.title === "Beginner" ) return (Array(10).fill( Array(10).fill( new Cell() )))
-    if ( this.level.title === "Intermediate" ) return (Array(25).fill( Array(25).fill( new Cell() )))
-    else return (Array(100).fill( Array(100).fill( new Cell() )))
+    return Array(this.level.columns).fill( Array(this.level.columns).fill( new Cell() ))
   }
   
  
