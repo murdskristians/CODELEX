@@ -20,13 +20,10 @@ export class Minesweeper {
   }
 
   getCells(): Cell[][] {
-    return [
-      [new Cell(), new Cell(), new Cell()],
-      [new Cell(), new Cell(), new Cell()],
-      [new Cell(), new Cell(), new Cell()]
-    ];
+    return Array(10).fill( Array(10).fill( new Cell() ) );
   }
-
+  
+ 
   onLeftMouseDown(x: number, y: number) {}
 
   onLeftMouseUp(x: number, y: number) {}
