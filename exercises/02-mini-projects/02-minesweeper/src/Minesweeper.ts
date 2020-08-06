@@ -25,6 +25,20 @@ export class Minesweeper {
   constructor(level: Level) {
     this.level = level;
     this.cells = this.getCells()
+
+    //PLANTING BOMBS ALSO DOES NOT WORK!
+    // let bombs = level.mines;
+    // while (bombs > 0) {
+
+    //   const x = Math.floor(Math.random() * level.rows);
+    //   const y = Math.floor(Math.random() * level.columns);
+
+    //   if ( this.cells[x][y].isBomb != true ) {
+    //     this.cells[x][y].isBomb = true;
+    //     bombs--; 
+    //     console.log("positioned mine at [" + x + "], [" + y + "], yet to go " + bombs);
+    //   }
+    // }
   }
 
   columnsCount(): number {

@@ -173,7 +173,17 @@ function () {
     this.minesFound = 0;
     this.columns = 10;
     this.level = level;
-    this.cells = this.getCells();
+    this.cells = this.getCells(); //PLANTING BOMBS ALSO DOES NOT WORK!
+    // let bombs = level.mines;
+    // while (bombs > 0) {
+    //   const x = Math.floor(Math.random() * level.rows);
+    //   const y = Math.floor(Math.random() * level.columns);
+    //   if ( this.cells[x][y].isBomb != true ) {
+    //     this.cells[x][y].isBomb = true;
+    //     bombs--; 
+    //     console.log("positioned mine at [" + x + "], [" + y + "], yet to go " + bombs);
+    //   }
+    // }
   }
 
   Minesweeper.prototype.columnsCount = function () {
@@ -508,7 +518,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56686" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
