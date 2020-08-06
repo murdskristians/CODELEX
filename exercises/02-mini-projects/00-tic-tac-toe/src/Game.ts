@@ -12,7 +12,7 @@ export class Game {
     return this.turn;
   }
   isWinningCombination(x:number, y:number, z:number): boolean{
-    return this.cells[x] === this.cells[y] && this.cells[y] === this.cells[z]
+    return this.cells[x] === this.cells[y] && this.cells[y] === this.cells[z] && this.cells[z] !== "-"
   }
   getWinner(): XO {
     //ROWS
