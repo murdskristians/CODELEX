@@ -128,12 +128,37 @@ exports.Minesweeper = exports.Cell = void 0;
 var Cell =
 /** @class */
 function () {
-  function Cell() {
+  function Cell(isOpen, mines, isBomb, isFlag, isUnsure) {
+    if (isOpen === void 0) {
+      isOpen = false;
+    }
+
+    if (mines === void 0) {
+      mines = 0;
+    }
+
+    if (isBomb === void 0) {
+      isBomb = false;
+    }
+
+    if (isFlag === void 0) {
+      isFlag = false;
+    }
+
+    if (isUnsure === void 0) {
+      isUnsure = false;
+    }
+
     this.isOpen = false;
     this.mines = 0;
     this.isBomb = false;
     this.isFlag = false;
     this.isUnsure = false;
+    this.isOpen = isOpen;
+    this.mines = mines;
+    this.isBomb = isBomb;
+    this.isFlag = isFlag;
+    this.isUnsure = isUnsure;
   }
 
   return Cell;
@@ -146,22 +171,31 @@ var Minesweeper =
 function () {
   function Minesweeper(level) {
     this.minesFound = 0;
+    this.columns = 10;
     this.level = level;
+    this.cells = this.getCells();
   }
 
   Minesweeper.prototype.columnsCount = function () {
+    this.columns = this.level.columns;
     return this.level.columns;
   };
 
   Minesweeper.prototype.getCells = function () {
-    return Array(this.level.columns).fill(Array(this.level.columns).fill(new Cell()));
+    this.cells = Array(this.level.columns).fill(Array(this.level.columns).fill(new Cell()));
+    return this.cells;
   };
 
-  Minesweeper.prototype.onLeftMouseDown = function (x, y) {};
+  Minesweeper.prototype.onLeftMouseDown = function (x, y) {
+    //Next line is not working
+    this.cells[x][y] = new Cell(true, 0, true, true, true);
+  };
 
   Minesweeper.prototype.onLeftMouseUp = function (x, y) {};
 
-  Minesweeper.prototype.onRightMouseUp = function (x, y) {};
+  Minesweeper.prototype.onRightMouseUp = function (x, y) {
+    this.cells[x][y].isFlag = true;
+  };
 
   Minesweeper.prototype.isTense = function () {
     return true;
@@ -175,6 +209,7 @@ function () {
       var currentTime = new Date().getTime();
       var distance = deadline - currentTime;
       var seconds = Math.floor(distance % (1000 * 60) / 1000);
+      console.log(seconds);
       return seconds;
     }, 500);
   };
@@ -473,7 +508,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59629" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54523" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
